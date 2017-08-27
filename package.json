@@ -8,8 +8,11 @@
 	},
 	"dependencies": {
 		"babel-preset-react-native": "2.1.0",
+		"firebase": "^4.3.0",
 		"react": "16.0.0-alpha.12",
-		"react-native": "0.47.2"
+		"react-native": "0.47.2",
+		"react-redux": "^5.0.6",
+		"redux": "^3.7.2"
 	},
 	"devDependencies": {
 		"babel-jest": "20.0.3",
