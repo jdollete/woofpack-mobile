@@ -1,6 +1,6 @@
 import React from 'react';
 import firebase from 'firebase';
-import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text } from 'native-base';
+import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text, InputGroup, Input } from 'native-base';
 
 class App extends React.Component {
 
@@ -31,15 +31,24 @@ class App extends React.Component {
             </Button>
           </Left>
           <Body>
-            <Title>Header</Title>
+            <Title>Login</Title>
           </Body>
           <Right />
         </Header>
+
         <Content>
-          <Text>
-            This is Content Section
-          </Text>
+          <Container>
+            <InputGroup rounded >
+              <Icon name="ios-home" style={{color:'#384850'}}/>
+              <Input style={{color: '#00c497'}} />
+            </InputGroup>
+            <InputGroup rounded >
+              <Icon name="ios-home" style={{color:'#384850'}}/>
+              <Input style={{color: '#00c497'}} />
+            </InputGroup>
+          </Container>
         </Content>
+
         <Footer>
           <FooterTab>
             <Button full>
