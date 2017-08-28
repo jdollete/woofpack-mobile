@@ -10,8 +10,8 @@ import {
   Input
 } from 'native-base';
 import { Actions } from 'react-native-router-flux';
-import { BaseInput } from './common';
-import { emailChanged, passwordChanged, loginUser } from '../actions';
+import { BaseInput, Spinner } from './common';
+import { emailChanged, passwordChanged, loginUser, userLoad, clearError } from '../actions';
 
 class UserLogin extends React.Component {
   constructor(props) {
@@ -37,7 +37,37 @@ class UserLogin extends React.Component {
   }
 
   onCancelPress() {
+    this.props.clearError();
     Actions.intro({type: "reset"});
+  }
+
+  renderButton() {
+    const { buttonStyle } = styles;
+
+    if (this.props.loading) {
+      return <Spinner size="large" />;
+    }
+
+    return (
+      <Container>
+        <Button
+          block
+          success
+          style={buttonStyle}
+          onPress={this.onLoginPress}
+        >
+          <Text>Login</Text>
+        </Button>
+        <Button
+          block
+          danger
+          style={buttonStyle}
+          onPress={this.onCancelPress}
+        >
+          <Text>Cancel</Text>
+        </Button>
+      </Container>
+    );
   }
 
   render() {
@@ -66,22 +96,7 @@ class UserLogin extends React.Component {
               onChangeText={this.onPasswordChange}
               value={this.props.password}
             />
-            <Button
-              block
-              success
-              style={buttonStyle}
-              onPress={this.onLoginPress}
-            >
-              <Text>Login</Text>
-            </Button>
-            <Button
-              block
-              danger
-              style={buttonStyle}
-              onPress={this.onCancelPress}
-            >
-              <Text>Cancel</Text>
-            </Button>
+            {this.renderButton()}
           </Container>
         </Content>
 
@@ -116,4 +131,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { emailChanged, passwordChanged, loginUser })(UserLogin);
+export default connect(mapStateToProps, { emailChanged, passwordChanged, loginUser, userLoad, clearError })(UserLogin);

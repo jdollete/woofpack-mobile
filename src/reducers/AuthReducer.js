@@ -5,7 +5,8 @@ import {
   LOGIN_USER_FAIL,
   CREATE_USER_SUCCESS,
   CREATE_USER_FAIL,
-  USER_LOAD
+  USER_LOAD,
+  CLEAR_ERROR
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -31,6 +32,8 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, ...INITIAL_STATE, user: action.payload };
     case CREATE_USER_FAIL:
       return { ...state, loading: false, error: action.payload, password: '' };
+    case CLEAR_ERROR:
+      return { ...state, error: '' };
     default:
       return state;
   }

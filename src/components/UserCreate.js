@@ -11,7 +11,7 @@ import {
 } from 'native-base';
 import { BaseInput, Spinner } from './common';
 import { Actions } from 'react-native-router-flux';
-import { emailChanged, passwordChanged, createUser, userLoad } from '../actions';
+import { emailChanged, passwordChanged, createUser, userLoad, clearError } from '../actions';
 
 
 class UserCreate extends React.Component {
@@ -38,6 +38,7 @@ class UserCreate extends React.Component {
   }
 
   onCancelPress() {
+    this.props.clearError();
     Actions.intro({type: "reset"});
   }
 
@@ -66,7 +67,7 @@ class UserCreate extends React.Component {
         >
           <Text>Cancel</Text>
         </Button>
-        </Container>
+      </Container>
     );
   }
 
@@ -131,4 +132,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { emailChanged, passwordChanged, createUser, userLoad })(UserCreate);
+export default connect(mapStateToProps, { emailChanged, passwordChanged, createUser, userLoad, clearError })(UserCreate);
