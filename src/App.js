@@ -1,5 +1,7 @@
 import React from 'react';
 import firebase from 'firebase';
+// import reducers from './reducers';
+
 import Router from './Router';
 import { Container } from 'native-base';
 
