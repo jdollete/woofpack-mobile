@@ -43,13 +43,16 @@ export const createUser = ({ email, password }) => {
   return(dispatch) => {
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then(user => createUserSuccess(dispatch, user))
-      .catch(() => createUserFail(dispatch));
+      .catch((error) => createUserFail(dispatch, error));
   }
 }
 
-const createUserFail = (dispatch) => {
-  console.log("User Create failed");
-  dispatch({ type: LOGIN_USER_FAIL });
+const createUserFail = (dispatch, error) => {
+  console.log(error);
+  dispatch({
+    type: CREATE_USER_FAIL,
+    payload: error.message
+  });
 }
 
 const createUserSuccess = (dispatch, user) => {
