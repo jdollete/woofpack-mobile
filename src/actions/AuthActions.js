@@ -7,8 +7,15 @@ import {
   LOGIN_USER_FAIL,
   CREATE_USER_SUCCESS,
   CREATE_USER_FAIL,
-  LOGIN_USER
+  USER_LOAD,
+  CLEAR_ERROR
 } from './types';
+
+export const clearError = () => {
+  return {
+    type: CLEAR_ERROR
+  }
+};
 
 export const emailChanged = (text) => {
   return {
@@ -27,21 +34,23 @@ export const passwordChanged = (text) => {
 export const loginUser = ({ email, password }) => {
   // redux-thunk will do asynchronous dispatch
   return (dispatch) => {
-    dispatch({ type: LOGIN_USER });
+    dispatch({ type: USER_LOAD });
 
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(user => loginUserSuccess(dispatch, user))
       .catch(() => loginUserFail(dispatch));
-    }
   }
+};
 
 export const createUser = ({ email, password }) => {
   return(dispatch) => {
+    dispatch({ type: USER_LOAD });
+
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then(user => createUserSuccess(dispatch, user))
       .catch((error) => createUserFail(dispatch, error));
   }
-}
+};
 
 const createUserFail = (dispatch, error) => {
   console.log(error);
@@ -49,7 +58,7 @@ const createUserFail = (dispatch, error) => {
     type: CREATE_USER_FAIL,
     payload: error.message
   });
-}
+};
 
 const createUserSuccess = (dispatch, user) => {
   console.log("User Create Success");
@@ -57,7 +66,7 @@ const createUserSuccess = (dispatch, user) => {
     type: LOGIN_USER_SUCCESS,
     payload: user
   });
-}
+};
 
 const loginUserFail = (dispatch) => {
   dispatch({ type: LOGIN_USER_FAIL });
@@ -68,4 +77,4 @@ const loginUserSuccess = (dispatch, user) => {
     type: LOGIN_USER_SUCCESS,
     payload: user
   });
-}
+};
