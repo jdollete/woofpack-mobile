@@ -7,7 +7,7 @@ import {
   LOGIN_USER_FAIL,
   CREATE_USER_SUCCESS,
   CREATE_USER_FAIL,
-  LOGIN_USER
+  USER_LOAD
 } from './types';
 
 export const emailChanged = (text) => {
@@ -27,7 +27,7 @@ export const passwordChanged = (text) => {
 export const loginUser = ({ email, password }) => {
   // redux-thunk will do asynchronous dispatch
   return (dispatch) => {
-    dispatch({ type: LOGIN_USER });
+    dispatch({ type: USER_LOAD });
 
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(user => loginUserSuccess(dispatch, user))
@@ -37,6 +37,8 @@ export const loginUser = ({ email, password }) => {
 
 export const createUser = ({ email, password }) => {
   return(dispatch) => {
+    dispatch({ type: USER_LOAD });
+
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then(user => createUserSuccess(dispatch, user))
       .catch((error) => createUserFail(dispatch, error));

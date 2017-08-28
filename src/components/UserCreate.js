@@ -9,9 +9,9 @@ import {
   InputGroup,
   Input
 } from 'native-base';
-import { BaseInput } from './common';
+import { BaseInput, Spinner } from './common';
 import { Actions } from 'react-native-router-flux';
-import { emailChanged, passwordChanged, createUser } from '../actions';
+import { emailChanged, passwordChanged, createUser, userLoad } from '../actions';
 
 
 class UserCreate extends React.Component {
@@ -41,8 +41,37 @@ class UserCreate extends React.Component {
     Actions.intro({type: "reset"});
   }
 
+  renderButton() {
+    const { buttonStyle } = styles;
+
+    if (this.props.loading) {
+      return <Spinner size="large" />;
+    }
+
+    return (
+      <Container>
+        <Button
+          block
+          success
+          style={buttonStyle}
+          onPress={this.onSignUpPress}
+        >
+          <Text>Sign-Up</Text>
+        </Button>
+        <Button
+          block
+          danger
+          style={buttonStyle}
+          onPress={this.onCancelPress}
+        >
+          <Text>Cancel</Text>
+        </Button>
+        </Container>
+    );
+  }
+
   render() {
-    const { inputContainerStyle, buttonStyle, errorTextStyle } = styles;
+    const { inputContainerStyle, errorTextStyle } = styles;
     return (
       <Container>
 
@@ -67,22 +96,7 @@ class UserCreate extends React.Component {
               onChangeText={this.onPasswordChange}
               value={this.props.password}
             />
-            <Button
-              block
-              success
-              style={buttonStyle}
-              onPress={this.onSignUpPress}
-            >
-              <Text>Sign-Up</Text>
-            </Button>
-            <Button
-              block
-              danger
-              style={buttonStyle}
-              onPress={this.onCancelPress}
-            >
-              <Text>Cancel</Text>
-            </Button>
+            {this.renderButton()}
           </Container>
         </Content>
 
@@ -117,4 +131,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { emailChanged, passwordChanged, createUser })(UserCreate);
+export default connect(mapStateToProps, { emailChanged, passwordChanged, createUser, userLoad })(UserCreate);
