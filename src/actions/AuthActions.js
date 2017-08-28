@@ -53,7 +53,6 @@ export const createUser = ({ email, password }) => {
 };
 
 const createUserFail = (dispatch, error) => {
-  console.log(error);
   dispatch({
     type: CREATE_USER_FAIL,
     payload: error.message
@@ -61,11 +60,13 @@ const createUserFail = (dispatch, error) => {
 };
 
 const createUserSuccess = (dispatch, user) => {
-  console.log("User Create Success");
   dispatch({
-    type: LOGIN_USER_SUCCESS,
+    type: CREATE_USER_SUCCESS,
     payload: user
   });
+  
+  Actions.eventList({ type: 'reset' });
+
 };
 
 const loginUserFail = (dispatch) => {
@@ -77,4 +78,7 @@ const loginUserSuccess = (dispatch, user) => {
     type: LOGIN_USER_SUCCESS,
     payload: user
   });
+
+  Actions.eventList({ type: 'reset' });
+
 };
