@@ -5,6 +5,7 @@ import IntroPage from './components/IntroPage';
 import UserCreate from './components/UserCreate';
 import UserLogin from './components/UserLogin';
 import EventList from './components/EventList';
+import EventCreateForm from './components/EventCreateForm';
 
 const RouterComponent = () => {
   return (
@@ -30,6 +31,11 @@ const RouterComponent = () => {
           key="eventList"
           component={EventList}
           initial
+        />
+        <Scene
+          hideNavBar="true"
+          key="eventCreateForm"
+          component={EventCreateForm}
         />
       </Scene>
     </Router>
