@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { StyleSheet } from 'react-native';
 import {
   Container,
@@ -10,17 +11,30 @@ import {
 } from 'native-base';
 import { BaseInput } from './common';
 import { Actions } from 'react-native-router-flux';
+import { emailChanged, passwordChanged, createUser } from '../actions';
+
 
 class UserCreate extends React.Component {
   constructor(props) {
     super(props);
 
+    this.onEmailChange = this.onEmailChange.bind(this);
+    this.onPasswordChange = this.onPasswordChange.bind(this);
     this.onSignUpPress = this.onSignUpPress.bind(this);
     this.onCancelPress = this.onCancelPress.bind(this);
   }
 
+  onEmailChange(text) {
+    this.props.emailChanged(text);
+  }
+
+  onPasswordChange(text) {
+    this.props.passwordChanged(text);
+  };
+
   onSignUpPress() {
-    console.log("signup");
+    const { email, password } = this.props
+    this.props.createUser({ email, password });
   }
 
   onCancelPress() {
@@ -38,11 +52,15 @@ class UserCreate extends React.Component {
               autoCorrect={false}
               iconName="ios-mail"
               placeHolder='pawsome@woofpack.com'
+              onChangeText={this.onEmailChange}
+              value={this.props.email}
             />
             <BaseInput
               secureTextEntry={true}
               iconName="ios-key"
               placeHolder='paaawsword'
+              onChangeText={this.onPasswordChange}
+              value={this.props.password}
             />
             <Button
               block
@@ -79,4 +97,14 @@ const styles = StyleSheet.create({
   }
 });
 
-export default UserCreate;
+const mapStateToProps = state => {
+  const { email, password, error, loading } = state.auth
+  return {
+    email,
+    password,
+    error,
+    loading
+  };
+};
+
+export default connect(mapStateToProps, { emailChanged, passwordChanged, createUser })(UserCreate);
