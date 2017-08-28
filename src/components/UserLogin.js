@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
+import { StyleSheet, View } from 'react-native';
 import {
   Container,
   Content,
@@ -9,19 +10,30 @@ import {
   Input
 } from 'native-base';
 import { Actions } from 'react-native-router-flux';
-
 import { BaseInput } from './common';
+import { emailChanged, passwordChanged, loginUser } from '../actions';
 
 class UserLogin extends React.Component {
   constructor(props) {
     super(props);
 
+    this.onEmailChange = this.onEmailChange.bind(this);
+    this.onPasswordChange = this.onPasswordChange.bind(this);
     this.onLoginPress = this.onLoginPress.bind(this);
     this.onCancelPress = this.onCancelPress.bind(this);
   }
 
+  onEmailChange(text) {
+    this.props.emailChanged(text);
+  }
+
+  onPasswordChange(text) {
+    this.props.passwordChanged(text);
+  };
+
   onLoginPress() {
-    console.log("Login");
+    const { email, password } = this.props
+    this.props.loginUser({ email, password });
   }
 
   onCancelPress() {
@@ -29,21 +41,30 @@ class UserLogin extends React.Component {
   }
 
   render() {
-    const { inputContainerStyle, buttonStyle } = styles;
+    const { inputContainerStyle, buttonStyle, errorTextStyle } = styles;
     return (
       <Container>
 
         <Content>
           <Container style={inputContainerStyle}>
+            <View>
+              <Text style={errorTextStyle}>
+              {this.props.error}
+              </Text>
+            </View>
             <BaseInput
               autoCorrect={false}
               iconName="ios-mail"
               placeHolder='pawsome@woofpack.com'
+              onChangeText={this.onEmailChange}
+              value={this.props.email}
             />
             <BaseInput
               secureTextEntry={true}
               iconName="ios-key"
               placeHolder='paaawsword'
+              onChangeText={this.onPasswordChange}
+              value={this.props.password}
             />
             <Button
               block
@@ -77,7 +98,22 @@ const styles = StyleSheet.create({
   buttonStyle: {
     marginTop: 5,
     marginBottom: 5
+  },
+  errorTextStyle: {
+    fontSize: 10,
+    alignSelf: 'center',
+    color: 'red'
   }
 });
 
-export default UserLogin;
+const mapStateToProps = state => {
+  const { email, password, error, loading } = state.auth
+  return {
+    email,
+    password,
+    error,
+    loading
+  };
+};
+
+export default connect(mapStateToProps, { emailChanged, passwordChanged, loginUser })(UserLogin);
