@@ -1,6 +1,7 @@
 import React from 'react';
 import firebase from 'firebase';
-import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text, InputGroup, Input } from 'native-base';
+import Router from './Router';
+import { Container } from 'native-base';
 
 class App extends React.Component {
 
@@ -24,38 +25,7 @@ class App extends React.Component {
   render() {
     return (
       <Container>
-        <Header>
-          <Left>
-            <Button transparent>
-              <Icon name='menu' />
-            </Button>
-          </Left>
-          <Body>
-            <Title>Login</Title>
-          </Body>
-          <Right />
-        </Header>
-
-        <Content>
-          <Container>
-            <InputGroup rounded >
-              <Icon name="ios-home" style={{color:'#384850'}}/>
-              <Input style={{color: '#00c497'}} />
-            </InputGroup>
-            <InputGroup rounded >
-              <Icon name="ios-home" style={{color:'#384850'}}/>
-              <Input style={{color: '#00c497'}} />
-            </InputGroup>
-          </Container>
-        </Content>
-
-        <Footer>
-          <FooterTab>
-            <Button full>
-              <Text>Footer</Text>
-            </Button>
-          </FooterTab>
-        </Footer>
+        <Router />
       </Container>
     );
   }
