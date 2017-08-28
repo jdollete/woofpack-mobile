@@ -26,7 +26,7 @@ class EventList extends React.Component {
   }
 
   onCreateEventPress() {
-    Actions.eventCreateForm();
+    Actions.eventCreate();
   }
 
   render() {

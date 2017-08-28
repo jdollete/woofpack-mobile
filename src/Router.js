@@ -5,7 +5,7 @@ import IntroPage from './components/IntroPage';
 import UserCreate from './components/UserCreate';
 import UserLogin from './components/UserLogin';
 import EventList from './components/EventList';
-import EventCreateForm from './components/EventCreateForm';
+import EventCreate from './components/EventCreate';
 
 const RouterComponent = () => {
   return (
@@ -15,6 +15,7 @@ const RouterComponent = () => {
           hideNavBar="true"
           key="intro"
           component={IntroPage}
+          initial
         />
         <Scene
           hideNavBar="true"
@@ -30,12 +31,11 @@ const RouterComponent = () => {
           hideNavBar="true"
           key="eventList"
           component={EventList}
-          initial
         />
         <Scene
           hideNavBar="true"
-          key="eventCreateForm"
-          component={EventCreateForm}
+          key="eventCreate"
+          component={EventCreate}
         />
       </Scene>
     </Router>

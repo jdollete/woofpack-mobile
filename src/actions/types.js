@@ -6,3 +6,6 @@ export const CREATE_USER_SUCCESS = 'create_user_success';
 export const CREATE_USER_FAIL = 'create_user_fail';
 export const USER_LOAD = 'user_load';
 export const CLEAR_ERROR = 'clear_error';
+
+export const EVENT_CREATE_SUCCESS = 'event_create_success';
+export const EVENT_UPDATE = 'event_update';
