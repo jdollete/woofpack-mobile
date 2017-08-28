@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import {
   Container,
   Content,
@@ -42,12 +42,17 @@ class UserCreate extends React.Component {
   }
 
   render() {
-    const { inputContainerStyle, buttonStyle } = styles;
+    const { inputContainerStyle, buttonStyle, errorTextStyle } = styles;
     return (
       <Container>
 
         <Content>
           <Container style={inputContainerStyle}>
+            <View>
+              <Text style={errorTextStyle}>
+              {this.props.error}
+              </Text>
+            </View>
             <BaseInput
               autoCorrect={false}
               iconName="ios-mail"
@@ -94,6 +99,11 @@ const styles = StyleSheet.create({
   buttonStyle: {
     marginTop: 5,
     marginBottom: 5
+  },
+  errorTextStyle: {
+    fontSize: 10,
+    alignSelf: 'center',
+    color: 'red'
   }
 });
 

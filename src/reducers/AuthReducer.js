@@ -30,7 +30,7 @@ export default (state = INITIAL_STATE, action) => {
     case CREATE_USER_SUCCESS:
       return { ...state, ...INITIAL_STATE, user: action.payload };
     case CREATE_USER_FAIL:
-      return { ...state, loading: false, error: 'Authentication Failed', password: '' };
+      return { ...state, loading: false, error: action.payload, password: '' };
     default:
       return state;
   }
