@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Icon, Text, InputGroup, Input } from 'native-base';
 
-const BaseInput = ({ iconName, placeHolder, secureTextEntry }) => {
+const BaseInput = ({ iconName, placeHolder, secureTextEntry, value, onChangeText }) => {
   const { inputGroupStyle } = styles;
 
   return (
@@ -10,7 +10,11 @@ const BaseInput = ({ iconName, placeHolder, secureTextEntry }) => {
       <Icon name={iconName} style={{color:'#384850'}}/>
       <Input
         secureTextEntry={secureTextEntry}
-        placeholder={placeHolder} />
+        autoCorrect={false}
+        placeholder={placeHolder}
+        value={value}
+        onChangeText={onChangeText}
+      />
     </InputGroup>
   );
 };

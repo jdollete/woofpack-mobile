@@ -1,5 +1,9 @@
 import React from 'react';
 import firebase from 'firebase';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import ReduxThunk from 'redux-thunk';
+import reducers from './reducers';
 import Router from './Router';
 import { Container } from 'native-base';
 
@@ -23,10 +27,14 @@ class App extends React.Component {
   }
 
   render() {
+    const store = createStore(reducers, {}, applyMiddleware(ReduxThunk))
+
     return (
-      <Container>
-        <Router />
-      </Container>
+      <Provider store={store}>
+        <Container>
+          <Router />
+        </Container>
+      </Provider>
     );
   }
 }
