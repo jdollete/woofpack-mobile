@@ -6,6 +6,7 @@ import UserCreate from './components/UserCreate';
 import UserLogin from './components/UserLogin';
 import EventList from './components/EventList';
 import EventCreate from './components/EventCreate';
+import EventView from './components/EventView';
 
 const RouterComponent = () => {
   return (
@@ -36,6 +37,11 @@ const RouterComponent = () => {
           hideNavBar="true"
           key="eventCreate"
           component={EventCreate}
+        />
+        <Scene
+          hideNavBar="true"
+          key="eventView"
+          component={EventView}
         />
       </Scene>
     </Router>
