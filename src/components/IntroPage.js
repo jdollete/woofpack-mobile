@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import {
   Button,
   Container,
@@ -25,46 +25,57 @@ class IntroPage extends React.Component {
   }
 
   render() {
-    const { containerStyle, contentStyle, buttonStyle } = styles;
+    const { viewStyle, viewButtonStyle, buttonStyle, textStyle } = styles;
     return (
-      <Container>
-        <Content>
-          <Container style={containerStyle}>
+      <View style={viewStyle}>
+
+          <View style={viewButtonStyle}>
             <Button
               bordered
               style={buttonStyle}
               onPress={this.onLoginPress}
             >
-              <Text>Login</Text>
+              <Text style={textStyle}>Login</Text>
             </Button>
             <Button
               bordered
               style={buttonStyle}
               onPress={this.onSignUpPress}
             >
-              <Text>Sign-Up</Text>
+              <Text style={textStyle}>Sign-Up</Text>
             </Button>
-          </Container>
-        </Content>
-      </Container>
+          </View>
+
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  containerStyle: {
+  viewStyle: {
+    flex:1,
     justifyContent: 'flex-end',
-    flex: 1,
+    backgroundColor: '#BBDEF0'
+  },
+  viewButtonStyle: {
     flexDirection: 'row',
-    padding: 5
+    paddingLeft: 5,
+    paddingRight: 5,
+    paddingBottom: 20
   },
   buttonStyle: {
+    borderColor: '#F49F0A',
+    backgroundColor: '#F49F0A',
     flex: 1,
     justifyContent: 'center',
     marginLeft: 5,
     marginRight: 5
-
+  },
+  textStyle: {
+    color: 'white',
+    fontWeight: "600"
   }
+
 });
 
 export default IntroPage;

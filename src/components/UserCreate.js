@@ -43,7 +43,7 @@ class UserCreate extends React.Component {
   }
 
   renderButton() {
-    const { buttonStyle } = styles;
+    const { buttonStyle, textStyle } = styles;
 
     if (this.props.loading) {
       return <Spinner size="large" />;
@@ -57,7 +57,7 @@ class UserCreate extends React.Component {
           style={buttonStyle}
           onPress={this.onSignUpPress}
         >
-          <Text>Sign-Up</Text>
+          <Text style={textStyle}>Sign-Up</Text>
         </Button>
         <Button
           block
@@ -65,53 +65,55 @@ class UserCreate extends React.Component {
           style={buttonStyle}
           onPress={this.onCancelPress}
         >
-          <Text>Cancel</Text>
+          <Text style={textStyle}>Cancel</Text>
         </Button>
       </Container>
     );
   }
 
   render() {
-    const { inputContainerStyle, errorTextStyle } = styles;
+    const { errorTextStyle, viewStyle } = styles;
     return (
-      <Container>
-
-        <Content>
-          <Container style={inputContainerStyle}>
+          <View style={viewStyle}>
             <View>
-              <Text style={errorTextStyle}>
-              {this.props.error}
-              </Text>
+              <View>
+                <Text style={errorTextStyle}>
+                {this.props.error}
+                </Text>
+              </View>
+              <BaseInput
+                autoCorrect={false}
+                iconName="ios-mail"
+                placeHolder='pawsome@woofpack.com'
+                onChangeText={this.onEmailChange}
+                value={this.props.email}
+              />
+              <BaseInput
+                secureTextEntry={true}
+                iconName="ios-key"
+                placeHolder='paaawsword'
+                onChangeText={this.onPasswordChange}
+                value={this.props.password}
+              />
+              {this.renderButton()}
             </View>
-            <BaseInput
-              autoCorrect={false}
-              iconName="ios-mail"
-              placeHolder='pawsome@woofpack.com'
-              onChangeText={this.onEmailChange}
-              value={this.props.email}
-            />
-            <BaseInput
-              secureTextEntry={true}
-              iconName="ios-key"
-              placeHolder='paaawsword'
-              onChangeText={this.onPasswordChange}
-              value={this.props.password}
-            />
-            {this.renderButton()}
-          </Container>
-        </Content>
+          </View>
 
-      </Container>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  inputContainerStyle: {
-    padding: 15,
-    justifyContent: 'center'
+  viewStyle: {
+    flex:1,
+    justifyContent: 'center',
+    backgroundColor: '#BBDEF0'
   },
   buttonStyle: {
+    borderColor: '#F49F0A',
+    backgroundColor: '#F49F0A',
+    marginLeft: 30,
+    marginRight:30,
     marginTop: 5,
     marginBottom: 5
   },
@@ -119,6 +121,10 @@ const styles = StyleSheet.create({
     fontSize: 10,
     alignSelf: 'center',
     color: 'red'
+  },
+  textStyle: {
+    color: 'white',
+    fontWeight: "600"
   }
 });
 

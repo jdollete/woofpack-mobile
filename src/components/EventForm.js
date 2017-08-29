@@ -23,6 +23,8 @@ class EventForm extends React.Component {
 
     this.state = {
       date: new Date(),
+      timeZoneOffsetInHours: (-1) * (new Date()).getTimezoneOffset() / 60,
+      todaysDate: new Date(),
       timeZoneOffsetInHours: (-1) * (new Date()).getTimezoneOffset() / 60
     };
 
@@ -79,6 +81,7 @@ class EventForm extends React.Component {
           </Form>
           <DatePickerIOS
             date={this.state.date}
+            minimumDate={this.state.todaysDate}
             mode="datetime"
             timeZoneOffsetInMinutes={this.state.timeZoneOffsetInHours * 60}
             onDateChange={this.onDateChange}
