@@ -54,8 +54,8 @@ class IntroPage extends React.Component {
 const styles = StyleSheet.create({
   viewStyle: {
     flex:1,
-    justifyContent: "flex-end",
-    backgroundColor: "#F49F0A"
+    justifyContent: 'flex-end',
+    backgroundColor: '#BBDEF0'
   },
   viewButtonStyle: {
     flexDirection: 'row',
@@ -64,15 +64,16 @@ const styles = StyleSheet.create({
     paddingBottom: 20
   },
   buttonStyle: {
-    borderColor: "#00A6A6",
-    backgroundColor: "#00A6A6",
+    borderColor: '#F49F0A',
+    backgroundColor: '#F49F0A',
     flex: 1,
     justifyContent: 'center',
     marginLeft: 5,
     marginRight: 5
   },
   textStyle: {
-    color: "#F49F0A"
+    color: 'white',
+    fontWeight: "600"
   }
 
 });

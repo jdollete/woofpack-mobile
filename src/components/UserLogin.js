@@ -42,7 +42,7 @@ class UserLogin extends React.Component {
   }
 
   renderButton() {
-    const { buttonStyle } = styles;
+    const { buttonStyle, textStyle } = styles;
 
     if (this.props.loading) {
       return <Spinner size="large" />;
@@ -56,7 +56,7 @@ class UserLogin extends React.Component {
           style={buttonStyle}
           onPress={this.onLoginPress}
         >
-          <Text>Login</Text>
+          <Text style={textStyle}>Login</Text>
         </Button>
         <Button
           block
@@ -64,53 +64,54 @@ class UserLogin extends React.Component {
           style={buttonStyle}
           onPress={this.onCancelPress}
         >
-          <Text>Cancel</Text>
+          <Text style={textStyle}>Cancel</Text>
         </Button>
       </Container>
     );
   }
 
   render() {
-    const { inputContainerStyle, buttonStyle, errorTextStyle } = styles;
+    const { viewStyle, errorTextStyle } = styles;
     return (
-      <Container>
-
-        <Content>
-          <Container style={inputContainerStyle}>
-            <View>
-              <Text style={errorTextStyle}>
-              {this.props.error}
-              </Text>
-            </View>
-            <BaseInput
-              autoCorrect={false}
-              iconName="ios-mail"
-              placeHolder='pawsome@woofpack.com'
-              onChangeText={this.onEmailChange}
-              value={this.props.email}
-            />
-            <BaseInput
-              secureTextEntry={true}
-              iconName="ios-key"
-              placeHolder='paaawsword'
-              onChangeText={this.onPasswordChange}
-              value={this.props.password}
-            />
-            {this.renderButton()}
-          </Container>
-        </Content>
-
-      </Container>
+      <View style={viewStyle}>
+        <View>
+          <View>
+            <Text style={errorTextStyle}>
+            {this.props.error}
+            </Text>
+          </View>
+          <BaseInput
+            autoCorrect={false}
+            iconName="ios-mail"
+            placeHolder='pawsome@woofpack.com'
+            onChangeText={this.onEmailChange}
+            value={this.props.email}
+          />
+          <BaseInput
+            secureTextEntry={true}
+            iconName="ios-key"
+            placeHolder='paaawsword'
+            onChangeText={this.onPasswordChange}
+            value={this.props.password}
+          />
+          {this.renderButton()}
+        </View>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  inputContainerStyle: {
-    padding: 15,
-    justifyContent: 'center'
+  viewStyle: {
+    flex:1,
+    justifyContent: 'center',
+    backgroundColor: '#BBDEF0'
   },
   buttonStyle: {
+    borderColor: '#F49F0A',
+    backgroundColor: '#F49F0A',
+    marginLeft: 30,
+    marginRight:30,
     marginTop: 5,
     marginBottom: 5
   },
@@ -118,6 +119,10 @@ const styles = StyleSheet.create({
     fontSize: 10,
     alignSelf: 'center',
     color: 'red'
+  },
+  textStyle: {
+    color: 'white',
+    fontWeight: "600"
   }
 });
 
