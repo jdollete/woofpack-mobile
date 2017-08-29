@@ -1,4 +1,5 @@
 import React from 'react';
+import firebase from 'firebase';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
@@ -29,12 +30,12 @@ class EventList extends React.Component {
   }
 
   componentWillMount() {
-    console.log("componentWillMount");
     this.props.eventsFetch();
     this.createDataSource(this.props);
   }
 
   componentWillReceiveProps(nextProps) {
+    this.loggedIn();
     this.createDataSource(nextProps);
   }
 
@@ -52,6 +53,14 @@ class EventList extends React.Component {
 
   onCreateEventPress() {
     Actions.eventCreate();
+  }
+
+  loggedIn() {
+    const { currentUser } = firebase.auth();
+
+    if (currentUser === null) {
+      Actions.intro({ type: 'reset'});
+    }
   }
 
   render() {
@@ -74,6 +83,9 @@ class EventList extends React.Component {
           dataSource={this.dataSource}
           renderRow={this.renderRow}
         />
+        <Button primary rounded onPress={() => firebase.auth().signOut()}>
+          <Text>Log Out</Text>
+        </Button>
         </Content>
         <Footer>
           <FooterTab>
