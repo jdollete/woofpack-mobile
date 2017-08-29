@@ -2,7 +2,7 @@ import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
 import {
   EVENT_CREATE_SUCCESS,
-  EVENT_UPDATE
+  EVENT_UPDATE,
 } from './types';
 
 export const eventUpdate = ({ prop, value }) => {
@@ -17,6 +17,7 @@ export const eventCreate = ({ eventName, street, city, zipCode, date }) => {
   const { currentUser } =firebase.auth();
   const author = currentUser.uid;
   const dateString = date.toString();
+
   return (dispatch) => {
     firebase.database().ref(`/events`)
       .push({ eventName, street, city, zipCode, dateString, author })

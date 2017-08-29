@@ -16,7 +16,6 @@ export default (state = INITIAL_STATE, action) => {
     case EVENT_CREATE_SUCCESS:
       return INITIAL_STATE;
     case EVENT_UPDATE:
-      console.log(action.payload.prop, action.payload.value);
       return { ...state, [action.payload.prop]: action.payload.value };
     default:
       return state;

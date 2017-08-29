@@ -9,3 +9,4 @@ export const CLEAR_ERROR = 'clear_error';
 
 export const EVENT_CREATE_SUCCESS = 'event_create_success';
 export const EVENT_UPDATE = 'event_update';
+export const EVENTS_FETCH_SUCCESS = 'events_fetch_success';

@@ -1,7 +1,10 @@
 import React from 'react';
+import _ from 'lodash';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
-import { StyleSheet } from 'react-native';
+import { eventsFetch } from '../actions';
+import EventListItem from './EventListItem'
+import { StyleSheet, ListView } from 'react-native';
 import {
   Container,
   Header,
@@ -25,6 +28,28 @@ class EventList extends React.Component {
     this.onCreateEventPress = this.onCreateEventPress.bind(this);
   }
 
+  componentWillMount() {
+    console.log("componentWillMount");
+    this.props.eventsFetch();
+    this.createDataSource(this.props);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.createDataSource(nextProps);
+  }
+
+  createDataSource({ events }) {
+    const ds = new ListView.DataSource({
+      rowHasChanged: (r1, r2) => r1 !== r2
+    });
+
+    this.dataSource = ds.cloneWithRows(events);
+  }
+
+  renderRow(event) {
+    return <EventListItem event={event} />
+  }
+
   onCreateEventPress() {
     Actions.eventCreate();
   }
@@ -44,9 +69,11 @@ class EventList extends React.Component {
           <Right />
         </Header>
         <Content>
-          <Text>
-            This is Content Section
-          </Text>
+        <ListView
+          enableEmptySections
+          dataSource={this.dataSource}
+          renderRow={this.renderRow}
+        />
         </Content>
         <Footer>
           <FooterTab>
@@ -60,4 +87,12 @@ class EventList extends React.Component {
   }
 }
 
-export default EventList;
+const mapStateToProps = (state) => {
+  const events = _.map(state.events, (val, uid) => {
+    return { ...val, uid };
+  });
+
+  return { events };
+};
+
+export default connect(mapStateToProps, { eventsFetch })(EventList);
