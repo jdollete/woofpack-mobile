@@ -11,7 +11,7 @@ class EventListItem extends React.Component {
   }
 
   onRowPress() {
-
+    Actions.eventView({ event: this.props.event });
   }
 
   render() {
