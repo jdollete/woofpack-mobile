@@ -6,14 +6,14 @@ import {
   Text
 } from 'native-base';
 
-const FloatingInput = ({ children }) => {
+const FloatingInput = ({ label, value, onChangeText }) => {
 
   return (
     <Item floatingLabel>
-      <Label><Text>{children}</Text></Label>
-      <Input autoCorrect={false} />
+      <Label><Text>{label}</Text></Label>
+      <Input autoCorrect={false} value={value} onChangeText={onChangeText} />
     </Item>
   )
 };
 
-export { FloatingInput};
+export { FloatingInput };
