@@ -12,7 +12,7 @@ export const eventUpdate = ({ prop, value }) => {
   };
 };
 
-export const eventCreate = ({ eventName, street, city, zipCode, date }) => {
+export const eventCreate = ({ eventName, street, city, zipCode, date, lat, lng }) => {
 
   const { currentUser } =firebase.auth();
   const author = currentUser.uid;
@@ -20,7 +20,7 @@ export const eventCreate = ({ eventName, street, city, zipCode, date }) => {
 
   return (dispatch) => {
     firebase.database().ref(`/events`)
-      .push({ eventName, street, city, zipCode, dateString, author })
+      .push({ eventName, street, city, zipCode, dateString, author, lat, lng })
       .then(() => {
         dispatch({ type: EVENT_CREATE_SUCCESS });
         Actions.eventList({ type: 'reset' });
