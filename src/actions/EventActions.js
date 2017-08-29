@@ -13,12 +13,13 @@ export const eventUpdate = ({ prop, value }) => {
 };
 
 export const eventCreate = ({ eventName, street, city, zipCode, date }) => {
+
   const { currentUser } =firebase.auth();
   const author = currentUser.uid;
-
+  const dateString = date.toString();
   return (dispatch) => {
     firebase.database().ref(`/events`)
-      .push({ eventName, street, city, zipCode, date, author })
+      .push({ eventName, street, city, zipCode, dateString, author })
       .then(() => {
         dispatch({ type: EVENT_CREATE_SUCCESS });
         Actions.eventList({ type: 'reset' });

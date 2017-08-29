@@ -6,19 +6,10 @@ import { StyleSheet } from 'react-native';
 import EventForm from './EventForm';
 import {
   Container,
-  Header,
-  Title,
-  Content,
   Footer,
   FooterTab,
   Button,
-  Body,
-  Icon,
   Text,
-  Form,
-  Item,
-  Label,
-  Input
 } from 'native-base';
 
 class EventCreate extends React.Component {

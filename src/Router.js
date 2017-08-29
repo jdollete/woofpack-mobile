@@ -15,7 +15,6 @@ const RouterComponent = () => {
           hideNavBar="true"
           key="intro"
           component={IntroPage}
-          initial
         />
         <Scene
           hideNavBar="true"
@@ -31,6 +30,7 @@ const RouterComponent = () => {
           hideNavBar="true"
           key="eventList"
           component={EventList}
+          initial
         />
         <Scene
           hideNavBar="true"

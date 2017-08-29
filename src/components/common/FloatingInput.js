@@ -11,7 +11,7 @@ const FloatingInput = ({ label, value, onChangeText }) => {
   return (
     <Item floatingLabel>
       <Label><Text>{label}</Text></Label>
-      <Input autoCorrect={false} value={value} onChangeText />
+      <Input autoCorrect={false} value={value} onChangeText={onChangeText} />
     </Item>
   )
 };

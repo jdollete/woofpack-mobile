@@ -29,11 +29,15 @@ class EventForm extends React.Component {
     this.onDateChange = this.onDateChange.bind(this);
   }
 
+  componentWillMount() {
+    const date = this.state.date;
+    this.props.eventUpdate({ prop: 'date', value: date });
+  }
+
   onDateChange(date) {
     this.setState({date: date});
 
-    const updatedDate = this.state.date
-    this.props.eventUpdate({ prop: 'date', value: updatedDate });
+    this.props.eventUpdate({ prop: 'date', value: date });
   }
 
   render() {
@@ -51,25 +55,25 @@ class EventForm extends React.Component {
             <FloatingInput
               label="Event Name"
               value={this.props.eventName}
-              onChangeText={value => this.props.eventUpdate({ prop: 'eventName', value: value })}
+              onChangeText={ value => this.props.eventUpdate({ prop: 'eventName', value: value })}
             >
             </FloatingInput>
             <FloatingInput
             label="Street Address"
-            value={this.props.name}
-            onChangeText={value => this.props.eventUpdate({ prop: 'street', value: value })}
+            value={this.props.street}
+            onChangeText={ value => this.props.eventUpdate({ prop: 'street', value: value })}
             >
             </FloatingInput>
             <FloatingInput
             label="City"
-            value={this.props.name}
-            onChangeText={value => this.props.eventUpdate({ prop: 'city', value: value })}
+            value={this.props.city}
+            onChangeText={ value => this.props.eventUpdate({ prop: 'city', value: value })}
             >
             </FloatingInput>
             <FloatingInput
             label="Zip-Code"
-            value={this.props.name}
-            onChangeText={value => this.props.eventUpdate({ prop: 'zipCode', value: value })}
+            value={this.props.zipCode}
+            onChangeText={ value => this.props.eventUpdate({ prop: 'zipCode', value: value })}
             >
             </FloatingInput>
           </Form>
