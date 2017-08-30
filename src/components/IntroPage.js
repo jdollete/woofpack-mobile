@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Image } from 'react-native';
 import {
   Button,
   Container,
@@ -25,26 +25,29 @@ class IntroPage extends React.Component {
   }
 
   render() {
-    const { viewStyle, viewButtonStyle, buttonStyle, textStyle } = styles;
+    const { viewStyle, viewButtonStyle, buttonStyle, textStyle, imageStyle } = styles;
     return (
       <View style={viewStyle}>
-
-          <View style={viewButtonStyle}>
-            <Button
-              bordered
-              style={buttonStyle}
-              onPress={this.onLoginPress}
-            >
-              <Text style={textStyle}>Login</Text>
-            </Button>
-            <Button
-              bordered
-              style={buttonStyle}
-              onPress={this.onSignUpPress}
-            >
-              <Text style={textStyle}>Sign-Up</Text>
-            </Button>
-          </View>
+        <Image
+          source={require('../images/woofpacksplash.png')}
+          style={imageStyle}
+        />
+        <View style={viewButtonStyle}>
+          <Button
+            bordered
+            style={buttonStyle}
+            onPress={this.onLoginPress}
+          >
+            <Text style={textStyle}>Login</Text>
+          </Button>
+          <Button
+            bordered
+            style={buttonStyle}
+            onPress={this.onSignUpPress}
+          >
+            <Text style={textStyle}>Sign-Up</Text>
+          </Button>
+        </View>
 
       </View>
     );
@@ -55,7 +58,7 @@ const styles = StyleSheet.create({
   viewStyle: {
     flex:1,
     justifyContent: 'flex-end',
-    backgroundColor: '#BBDEF0'
+    backgroundColor: 'white'
   },
   viewButtonStyle: {
     flexDirection: 'row',
@@ -74,8 +77,13 @@ const styles = StyleSheet.create({
   textStyle: {
     color: 'white',
     fontWeight: "600"
+  },
+  imageStyle: {
+    flex: 1,
+    width: null,
+    height: null,
+    borderColor: 'white'
   }
-
 });
 
 export default IntroPage;
