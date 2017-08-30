@@ -21,6 +21,7 @@ const BaseInput = ({ iconName, placeHolder, secureTextEntry, value, onChangeText
 
 const styles = StyleSheet.create({
   inputGroupStyle: {
+    borderColor: '#F49F0A',
     marginTop: 5,
     marginBottom: 5,
     marginRight: 10,

@@ -3,11 +3,8 @@ import { connect } from 'react-redux';
 import { StyleSheet, View } from 'react-native';
 import {
   Container,
-  Content,
   Button,
   Text,
-  InputGroup,
-  Input
 } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { BaseInput, Spinner } from './common';
@@ -45,7 +42,12 @@ class UserLogin extends React.Component {
     const { buttonStyle, textStyle } = styles;
 
     if (this.props.loading) {
-      return <Spinner size="large" />;
+
+      return (
+        <Container style={{ flex: 1 }}>
+          <Spinner size="large" />
+        </Container>
+      )
     }
 
     return (
@@ -105,7 +107,6 @@ const styles = StyleSheet.create({
   viewStyle: {
     flex:1,
     justifyContent: 'center',
-    backgroundColor: '#BBDEF0'
   },
   buttonStyle: {
     borderColor: '#F49F0A',

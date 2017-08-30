@@ -1180,7 +1180,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.WoofPack;
+				PRODUCT_BUNDLE_IDENTIFIER = me.reactjs.native.WoofPack;
 				PRODUCT_NAME = WoofPack;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1204,7 +1204,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.WoofPack;
+				PRODUCT_BUNDLE_IDENTIFIER = me.reactjs.native.WoofPack;
 				PRODUCT_NAME = WoofPack;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
