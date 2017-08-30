@@ -1,5 +1,5 @@
 import React from 'react';
-import MapView from 'react-native-maps';
+import { Actions } from 'react-native-router-flux';
 import { StyleSheet, View } from 'react-native';
 import { MapViewComponent } from './MapViewComponent';
 import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text } from 'native-base';
@@ -9,11 +9,11 @@ class EventView extends React.Component {
   constructor(props) {
     super(props);
 
-    this.onRegionChange = this.onRegionChange.bind(this);
+    this.onBackPress = this.onBackPress.bind(this);
   }
 
-  onRegionChange(region) {
-    this.setState({ region });
+  onBackPress() {
+    Actions.eventList({ type: 'reset' })
   }
 
   render() {
@@ -23,8 +23,8 @@ class EventView extends React.Component {
       <Container>
         <Header>
           <Left>
-            <Button transparent>
-              <Icon name='menu' />
+            <Button transparent onPress={this.onBackPress}>
+              <Icon name='ios-arrow-back' />
             </Button>
           </Left>
           <Body>
@@ -35,8 +35,8 @@ class EventView extends React.Component {
         <Content>
           <View style={{ flex: 1 }}>
             <MapViewComponent
-              latitude={parseFloat(lat)}
-              longitude={parseFloat(lng)}
+              latNum={lat}
+              lngNum={lng}
             />
           </View>
         </Content>

@@ -2,14 +2,15 @@ import React from 'react';
 import MapView from 'react-native-maps';
 import { StyleSheet } from 'react-native';
 
-const MapViewComponent = ({ latitude, longitude }) => {
-
+const MapViewComponent = ({ latNum, lngNum }) => {
+  const latNumInt = parseFloat(latNum);
+  const lngNumInt = parseFloat(lngNum);
   return (
     <MapView
       style={styles.map}
-      initialRegion={{
-        latitude: latitude,
-        longitude: longitude,
+      region={{
+        latitude: latNumInt,
+        longitude: lngNumInt,
         latitudeDelta: 0.0052,
         longitudeDelta: 0.0051,
       }}
