@@ -1,21 +1,13 @@
 import React from 'react';
 import MapView from 'react-native-maps';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { MapViewComponent } from './MapViewComponent';
 import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text } from 'native-base';
 
 
 class EventView extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      region: {
-      latitude: 40.720524,
-      longitude: -74.043169,
-      latitudeDelta: 0.0032,
-      longitudeDelta: 0.0011,
-      }
-    }
 
     this.onRegionChange = this.onRegionChange.bind(this);
   }
@@ -25,8 +17,8 @@ class EventView extends React.Component {
   }
 
   render() {
-    console.log(this.state.region);
-    const { eventName, city, dateString, street, zipCode } = this.props.event
+    const { eventName, city, dateString, street, zipCode, lat, lng } = this.props.event
+
     return (
       <Container>
         <Header>
@@ -41,10 +33,12 @@ class EventView extends React.Component {
           <Right />
         </Header>
         <Content>
-          <MapView
-            style={styles.map}
-            initialRegion={this.state.region}
-          />
+          <View style={{ flex: 1 }}>
+            <MapViewComponent
+              latitude={parseFloat(lat)}
+              longitude={parseFloat(lng)}
+            />
+          </View>
         </Content>
         <Footer>
           <FooterTab>

@@ -30,8 +30,6 @@ class EventCreate extends React.Component {
 
     this.getCoordinates(eventName, street, city, zipCode, date, lng, lat);
 
-
-    // this.props.eventCreate({ eventName, street, city, zipCode, date, lng, lat });
   }
 
   getCoordinates(eventName, street, city, zipCode, date, lng, lat) {
