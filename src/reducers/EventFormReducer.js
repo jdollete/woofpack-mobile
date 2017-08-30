@@ -8,7 +8,9 @@ const INITIAL_STATE = {
   street: '',
   city: '',
   zipCode: '',
-  date: ''
+  date: '',
+  lat: '',
+  lng: ''
 };
 
 export default (state = INITIAL_STATE, action) => {
