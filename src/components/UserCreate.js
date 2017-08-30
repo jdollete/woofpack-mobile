@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Image } from 'react-native';
 import {
   Container,
   Content,
@@ -107,7 +107,6 @@ const styles = StyleSheet.create({
   viewStyle: {
     flex:1,
     justifyContent: 'center',
-    backgroundColor: '#BBDEF0'
   },
   buttonStyle: {
     borderColor: '#F49F0A',
