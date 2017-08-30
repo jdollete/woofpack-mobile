@@ -100,8 +100,12 @@ class EventList extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+  const todaysDate = new Date().getTime();
+
   const events = _.map(state.events, (val, uid) => {
+
     return { ...val, uid };
+
   });
 
   return { events };
