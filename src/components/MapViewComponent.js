@@ -14,7 +14,14 @@ const MapViewComponent = ({ latNum, lngNum }) => {
         latitudeDelta: 0.0052,
         longitudeDelta: 0.0051,
       }}
-    />
+    >
+      <MapView.Marker
+        coordinate={{
+          latitude: latNumInt,
+          longitude: lngNumInt
+        }}
+      />
+    </MapView>
   );
 };
 
