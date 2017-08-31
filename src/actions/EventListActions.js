@@ -7,7 +7,7 @@ import {
 export const eventsFetch = () => {
 
   return (dispatch) => {
-    firebase.database().ref(`/events/`).child(`/events/`)
+    firebase.database().ref(`/events/`)
       .orderByChild('timeStamp')
       .on('value', snapshot => {
         console.log(snapshot.val());
