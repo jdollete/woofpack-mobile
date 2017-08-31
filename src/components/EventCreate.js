@@ -40,8 +40,9 @@ class EventCreate extends React.Component {
         var location = json.results[0].geometry.location;
         var lng = location.lng.toString();
         var lat = location.lat.toString();
+        var timeStamp = date.getTime();
 
-        this.props.eventCreate({ eventName, street, city, zipCode, date, lng, lat })
+        this.props.eventCreate({ eventName, street, city, zipCode, date, lng, lat, timeStamp })
       },
       error => {
         alert("Invalid Address");

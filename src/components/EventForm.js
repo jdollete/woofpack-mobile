@@ -9,12 +9,7 @@ import {
   Title,
   Content,
   Body,
-  Icon,
-  Text,
   Form,
-  Item,
-  Label,
-  Input
 } from 'native-base';
 
 class EventForm extends React.Component {

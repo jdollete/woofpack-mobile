@@ -12,15 +12,15 @@ export const eventUpdate = ({ prop, value }) => {
   };
 };
 
-export const eventCreate = ({ eventName, street, city, zipCode, date, lat, lng }) => {
+export const eventCreate = ({ eventName, street, city, zipCode, date, lat, lng, timeStamp }) => {
 
   const { currentUser } =firebase.auth();
   const author = currentUser.uid;
   const dateString = date.toString();
 
   return (dispatch) => {
-    firebase.database().ref(`/events`)
-      .push({ eventName, street, city, zipCode, dateString, author, lat, lng })
+    firebase.database().ref(`/events/`)
+      .push({ eventName, street, city, zipCode, dateString, author, lat, lng, timeStamp })
       .then(() => {
         dispatch({ type: EVENT_CREATE_SUCCESS });
         Actions.eventList({ type: 'reset' });
