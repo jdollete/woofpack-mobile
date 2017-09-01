@@ -52,6 +52,7 @@ class EventForm extends React.Component {
             <FloatingInput
               label="Event Name"
               value={this.props.eventName}
+              maxLength={35}
               onChangeText={ value => this.props.eventUpdate({ prop: 'eventName', value: value })}
             >
             </FloatingInput>

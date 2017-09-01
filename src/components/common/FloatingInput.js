@@ -6,12 +6,12 @@ import {
   Text
 } from 'native-base';
 
-const FloatingInput = ({ label, value, onChangeText }) => {
+const FloatingInput = ({ label, value, onChangeText, maxLength }) => {
 
   return (
     <Item floatingLabel>
       <Label><Text>{label}</Text></Label>
-      <Input autoCorrect={false} value={value} onChangeText={onChangeText} />
+      <Input autoCorrect={false} maxLength={maxLength} value={value} onChangeText={onChangeText} />
     </Item>
   )
 };
