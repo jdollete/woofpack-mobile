@@ -3,7 +3,6 @@ import { View, Text, StyleSheet } from 'react-native';
 
 const DateView = ({ date }) => {
   const { viewStyle, monthStyle, dayStyle } = styles;
-  console.log(date.split(" ")[1]);
   const dateSplit = date.split(" ");
   const month = dateSplit[1];
   const dayNum = dateSplit[2];

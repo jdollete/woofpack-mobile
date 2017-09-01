@@ -26,13 +26,13 @@ class EventCreate extends React.Component {
   }
 
   onCreatePress() {
-    const { eventName, address, date, lng, lat } = this.props;
+    const { eventName, description, address, date, lng, lat } = this.props;
 
-    this.getCoordinates(eventName, address, date, lng, lat);
+    this.getCoordinates(eventName, description, address, date, lng, lat);
 
   }
 
-  getCoordinates(eventName, address, date, lng, lat) {
+  getCoordinates(eventName, description, address, date, lng, lat) {
     Geocoder.setApiKey('AIzaSyCtnegDhFc_lIpX-sM1gvnFPayaBikL8s8');
 
     Geocoder.getFromLocation(address).then(
@@ -42,7 +42,7 @@ class EventCreate extends React.Component {
         var lat = location.lat.toString();
         var timeStamp = date.getTime();
 
-        this.props.eventCreate({ eventName, address, date, lng, lat, timeStamp })
+        this.props.eventCreate({ eventName, description, address, date, lng, lat, timeStamp })
       },
       error => {
         alert("Invalid Address");
@@ -72,9 +72,9 @@ class EventCreate extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  const { eventName, address, date, lng, lat } = state.eventForm;
+  const { eventName, description, address, date, lng, lat } = state.eventForm;
 
-  return { eventName, address, date, lng, lat };
+  return { eventName, description, address, date, lng, lat };
 }
 
 export default connect(mapStateToProps, { eventCreate })(EventCreate);

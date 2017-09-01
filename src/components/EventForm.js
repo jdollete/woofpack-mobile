@@ -62,6 +62,12 @@ class EventForm extends React.Component {
             onChangeText={ value => this.props.eventUpdate({ prop: 'address', value: value })}
             >
             </FloatingInput>
+            <FloatingInput
+            label="Description"
+            value={this.props.street}
+            onChangeText={ value => this.props.eventUpdate({ prop: 'description', value: value })}
+            >
+            </FloatingInput>
           </Form>
           <DatePickerIOS
             date={this.state.date}
@@ -77,9 +83,9 @@ class EventForm extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  const { eventName, address, date } = state.eventForm;
+  const { eventName, address, date, description } = state.eventForm;
 
-  return { eventName, address, date };
+  return { eventName, address, date, description };
 }
 
 export default connect(mapStateToProps, { eventUpdate })(EventForm);
