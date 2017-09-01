@@ -5,9 +5,7 @@ import {
 
 const INITIAL_STATE = {
   eventName: '',
-  street: '',
-  city: '',
-  zipCode: '',
+  address: '',
   date: '',
   lat: '',
   lng: ''

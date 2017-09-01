@@ -57,21 +57,9 @@ class EventForm extends React.Component {
             >
             </FloatingInput>
             <FloatingInput
-            label="Street Address"
+            label="Address (Street, City, State, Zip)"
             value={this.props.street}
-            onChangeText={ value => this.props.eventUpdate({ prop: 'street', value: value })}
-            >
-            </FloatingInput>
-            <FloatingInput
-            label="City"
-            value={this.props.city}
-            onChangeText={ value => this.props.eventUpdate({ prop: 'city', value: value })}
-            >
-            </FloatingInput>
-            <FloatingInput
-            label="Zip-Code"
-            value={this.props.zipCode}
-            onChangeText={ value => this.props.eventUpdate({ prop: 'zipCode', value: value })}
+            onChangeText={ value => this.props.eventUpdate({ prop: 'address', value: value })}
             >
             </FloatingInput>
           </Form>
@@ -89,9 +77,9 @@ class EventForm extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  const { eventName, street, city, zipCode, date } = state.eventForm;
+  const { eventName, address, date } = state.eventForm;
 
-  return { eventName, street, city, zipCode, date };
+  return { eventName, address, date };
 }
 
 export default connect(mapStateToProps, { eventUpdate })(EventForm);
