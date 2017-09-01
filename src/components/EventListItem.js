@@ -1,4 +1,5 @@
 import React from 'react';
+import geolib from 'geolib';
 import { StyleSheet, TouchableWithoutFeedback, View } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Container, CardItem, Text } from 'native-base';
@@ -12,15 +13,27 @@ class EventListItem extends React.Component {
     super(props);
 
     this.onRowPress = this.onRowPress.bind(this);
+    this.findDistance = this.findDistance.bind(this);
   }
 
   onRowPress() {
     Actions.eventView({ event: this.props.event });
   }
 
+  findDistance(lat, lang) {
+    const distance = geolib.getDistance(
+      {latitude: lat, longitude: lang},
+      {latitude: 40.7205238, longitude: -74.0431689}
+    );
+    const convertedDistance = geolib.convertUnit('mi', distance, 2)
+    return convertedDistance;
+  }
+
   render() {
-    const { eventName, dateString } = this.props.event
+    const { eventName, dateString, lat, lng } = this.props.event
     const { viewStyle, titleViewStyle, titleStyle, contentViewStyle } = styles
+    const distanceValue = this.findDistance(lat, lng);
+    console.log(distanceValue);
 
     return (
       <TouchableWithoutFeedback onPress={this.onRowPress}>
@@ -33,7 +46,7 @@ class EventListItem extends React.Component {
 
           <View style={contentViewStyle}>
             <DateView date={dateString}/>
-            <DistanceView />
+            <DistanceView distance={distanceValue}/>
             <AttendView />
             <AttendButton />
           </View>

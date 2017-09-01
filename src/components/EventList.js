@@ -43,12 +43,21 @@ class EventList extends React.Component {
     this.createDataSource(nextProps);
   }
 
+  orderEvents(events) {
+    const todaysDate = new Date().getTime();
+    const orderEvents = _.sortBy(events, 'timeStamp');
+
+    return orderEvents;
+  }
+
   createDataSource({ events }) {
+    const sortedEvents = this.orderEvents(events);
+
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
     });
 
-    this.dataSource = ds.cloneWithRows(events);
+    this.dataSource = ds.cloneWithRows(sortedEvents);
   }
 
   renderRow(event) {
@@ -109,15 +118,13 @@ class EventList extends React.Component {
             </FooterTab>
           </Footer>
         </Container>
-        
+
       </Drawer>
     );
   }
 }
 
 const mapStateToProps = (state) => {
-  const todaysDate = new Date().getTime();
-
   const events = _.map(state.events, (val, uid) => {
 
     return { ...val, uid };

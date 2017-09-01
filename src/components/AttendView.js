@@ -6,7 +6,8 @@ const AttendView = () => {
 
   return (
     <View style={viewStyle}>
-      <Text>Test</Text>
+      <Text>Pack</Text>
+      <Text>10</Text>
     </View>
   );
 };

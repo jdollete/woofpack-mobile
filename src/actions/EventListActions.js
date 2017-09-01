@@ -5,12 +5,13 @@ import {
 } from './types';
 
 export const eventsFetch = () => {
+  const todaysDate = new Date().getTime();
 
   return (dispatch) => {
     firebase.database().ref(`/events/`)
       .orderByChild('timeStamp')
+      .startAt(todaysDate)
       .on('value', snapshot => {
-        console.log(snapshot.val());
         dispatch({
           type: EVENTS_FETCH_SUCCESS,
           payload: snapshot.val()
