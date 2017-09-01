@@ -26,23 +26,23 @@ class EventCreate extends React.Component {
   }
 
   onCreatePress() {
-    const { eventName, street, city, zipCode, date, lng, lat } = this.props;
+    const { eventName, description, address, date, lng, lat } = this.props;
 
-    this.getCoordinates(eventName, street, city, zipCode, date, lng, lat);
+    this.getCoordinates(eventName, description, address, date, lng, lat);
 
   }
 
-  getCoordinates(eventName, street, city, zipCode, date, lng, lat) {
+  getCoordinates(eventName, description, address, date, lng, lat) {
     Geocoder.setApiKey('AIzaSyCtnegDhFc_lIpX-sM1gvnFPayaBikL8s8');
 
-    Geocoder.getFromLocation(street + ', ' + city + ', ' + zipCode).then(
+    Geocoder.getFromLocation(address).then(
       json => {
         var location = json.results[0].geometry.location;
         var lng = location.lng.toString();
         var lat = location.lat.toString();
         var timeStamp = date.getTime();
 
-        this.props.eventCreate({ eventName, street, city, zipCode, date, lng, lat, timeStamp })
+        this.props.eventCreate({ eventName, description, address, date, lng, lat, timeStamp })
       },
       error => {
         alert("Invalid Address");
@@ -72,9 +72,9 @@ class EventCreate extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  const { eventName, street, city, zipCode, date, lng, lat } = state.eventForm;
+  const { eventName, description, address, date, lng, lat } = state.eventForm;
 
-  return { eventName, street, city, zipCode, date, lng, lat };
+  return { eventName, description, address, date, lng, lat };
 }
 
 export default connect(mapStateToProps, { eventCreate })(EventCreate);

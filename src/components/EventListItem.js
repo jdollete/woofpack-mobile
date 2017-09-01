@@ -2,6 +2,10 @@ import React from 'react';
 import { StyleSheet, TouchableWithoutFeedback, View } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Container, CardItem, Text } from 'native-base';
+import DateView from './DateView';
+import DistanceView from './DistanceView';
+import AttendView from './AttendView';
+import { AttendButton } from './common';
 
 class EventListItem extends React.Component {
   constructor(props) {
@@ -15,16 +19,25 @@ class EventListItem extends React.Component {
   }
 
   render() {
-    const { eventName } = this.props.event
+    const { eventName, dateString } = this.props.event
+    const { viewStyle, titleViewStyle, titleStyle, contentViewStyle } = styles
 
     return (
       <TouchableWithoutFeedback onPress={this.onRowPress}>
-        <View>
-          <CardItem>
-            <Text style={styles.titleStyle}>
+        <View style={viewStyle}>
+          <View style={titleViewStyle}>
+            <Text style={titleStyle}>
               {eventName}
             </Text>
-          </CardItem>
+          </View>
+
+          <View style={contentViewStyle}>
+            <DateView date={dateString}/>
+            <DistanceView />
+            <AttendView />
+            <AttendButton />
+          </View>
+
         </View>
       </TouchableWithoutFeedback>
 
@@ -33,9 +46,27 @@ class EventListItem extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  viewStyle: {
+    margin: 5,
+    borderWidth: 0.5,
+    borderColor: 'black',
+    borderRadius: 10
+  },
+  titleViewStyle: {
+    borderBottomWidth: 0.5,
+    borderColor: 'black',
+  },
   titleStyle: {
     fontSize: 18,
-    paddingLeft: 15
+    paddingLeft: 15,
+    flex: 1,
+    alignSelf: 'center'
+  },
+  contentViewStyle: {
+    // height: 50,
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   }
 });
 

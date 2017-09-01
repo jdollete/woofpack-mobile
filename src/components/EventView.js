@@ -17,7 +17,7 @@ class EventView extends React.Component {
   }
 
   render() {
-    const { eventName, city, dateString, street, zipCode, lat, lng } = this.props.event
+    const { eventName, dateString, address, lat, lng } = this.props.event
 
     return (
       <Container>
