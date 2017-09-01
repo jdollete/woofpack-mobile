@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { eventsFetch } from '../actions';
 import EventListItem from './EventListItem'
+import { Drawer } from 'native-base';
+import DrawerItems from './DrawerItems';
 import { StyleSheet, ListView } from 'react-native';
 import {
   Container,
@@ -27,6 +29,8 @@ class EventList extends React.Component {
     super(props);
 
     this.onCreateEventPress = this.onCreateEventPress.bind(this);
+    this.closeDrawer = this.closeDrawer.bind(this);
+    this.openDrawer = this.openDrawer.bind(this);
   }
 
   componentWillMount() {
@@ -55,6 +59,14 @@ class EventList extends React.Component {
     Actions.eventCreate();
   }
 
+  closeDrawer() {
+    this.drawer._root.close()
+  };
+
+  openDrawer() {
+    this.drawer._root.open()
+  };
+
   loggedIn() {
     const { currentUser } = firebase.auth();
 
@@ -65,36 +77,40 @@ class EventList extends React.Component {
 
   render() {
     return (
-      <Container>
-        <Header>
-          <Left>
-            <Button transparent>
-              <Icon name='menu' />
-            </Button>
-          </Left>
-          <Body>
-            <Title>Woof Pack</Title>
-          </Body>
-          <Right />
-        </Header>
-        <Content>
-        <ListView
-          enableEmptySections
-          dataSource={this.dataSource}
-          renderRow={this.renderRow}
-        />
-        <Button primary rounded onPress={() => firebase.auth().signOut()}>
-          <Text>Log Out</Text>
-        </Button>
-        </Content>
-        <Footer>
-          <FooterTab>
-            <Button full onPress={this.onCreateEventPress}>
-              <Text>Create Event</Text>
-            </Button>
-          </FooterTab>
-        </Footer>
-      </Container>
+      <Drawer
+        ref={(ref) => { this.drawer = ref; }}
+        content={<DrawerItems />}
+        onClose={() => this.closeDrawer()} >
+
+        <Container>
+          <Header>
+            <Left>
+              <Button transparent onPress={this.openDrawer}>
+                <Icon name='menu' />
+              </Button>
+            </Left>
+            <Body>
+              <Title>Woof Pack</Title>
+            </Body>
+            <Right />
+          </Header>
+          <Content>
+          <ListView
+            enableEmptySections
+            dataSource={this.dataSource}
+            renderRow={this.renderRow}
+          />
+          </Content>
+          <Footer>
+            <FooterTab>
+              <Button full onPress={this.onCreateEventPress}>
+                <Text>Create Event</Text>
+              </Button>
+            </FooterTab>
+          </Footer>
+        </Container>
+        
+      </Drawer>
     );
   }
 }
