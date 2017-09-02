@@ -1,12 +1,13 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-const DistanceView = () => {
+const DistanceView = ({ distance }) => {
   const { viewStyle } = styles;
 
   return (
     <View style={viewStyle}>
-      <Text>Test</Text>
+      <Text>{distance}</Text>
+      <Text>mi</Text>
     </View>
   );
 };
