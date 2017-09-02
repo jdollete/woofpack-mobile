@@ -103,13 +103,15 @@ class EventList extends React.Component {
             </Body>
             <Right />
           </Header>
+
           <Content>
-          <ListView
-            enableEmptySections
-            dataSource={this.dataSource}
-            renderRow={this.renderRow}
-          />
+            <ListView
+              enableEmptySections
+              dataSource={this.dataSource}
+              renderRow={this.renderRow}
+            />
           </Content>
+
           <Footer>
             <FooterTab>
               <Button full onPress={this.onCreateEventPress}>
