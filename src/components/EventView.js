@@ -1,6 +1,8 @@
 import React from 'react';
 import firebase from 'firebase';
+import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
+import { eventDelete } from '../actions';
 import { StyleSheet, View, Alert } from 'react-native';
 import { MapViewComponent } from './MapViewComponent';
 import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text } from 'native-base';
@@ -20,22 +22,24 @@ class EventView extends React.Component {
   }
 
   onPressEditEvent() {
+
     alert("Event Edit");
   }
 
   onPressDeleteEvent() {
+
     Alert.alert(
       'Delete Event Confirmation',
       'Are you sure you want to cancel this event?',
       [
-        {text: 'YES', onPress: () => console.log('OK Pressed')},
+        {text: 'YES', onPress: (eventId) => this.props.eventDelete({ eventId: this.props.event.uid })},
         {text: 'CANCEL'},
       ],
       { cancelable: false }
     )
   }
 
-  renderFooter(author) {
+  renderFooter(author, eventId) {
     const { currentUser } =firebase.auth();
     const currentUserId = currentUser.uid
 
@@ -68,7 +72,7 @@ class EventView extends React.Component {
   }
 
   render() {
-    const { eventName, dateString, address, lat, lng, author } = this.props.event
+    const { eventName, dateString, address, lat, lng, author, uid } = this.props.event;
 
     return (
       <Container>
@@ -79,7 +83,7 @@ class EventView extends React.Component {
             </Button>
           </Left>
           <Body>
-            <Title>Header</Title>
+            <Title>{eventName}</Title>
           </Body>
           <Right />
         </Header>
@@ -105,4 +109,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default EventView;
+export default connect(null, { eventDelete })(EventView);
