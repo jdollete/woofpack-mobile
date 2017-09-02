@@ -33,7 +33,6 @@ class EventListItem extends React.Component {
     const { eventName, dateString, lat, lng } = this.props.event
     const { viewStyle, titleViewStyle, titleStyle, contentViewStyle } = styles
     const distanceValue = this.findDistance(lat, lng);
-    console.log(distanceValue);
 
     return (
       <TouchableWithoutFeedback onPress={this.onRowPress}>

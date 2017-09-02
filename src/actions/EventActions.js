@@ -30,3 +30,13 @@ export const eventCreate = ({ eventName, description, address, date, lat, lng, t
       });
   };
 };
+
+export const eventDelete = ({ eventId }) => {
+  return () => {
+    firebase.database().ref(`/events/${eventId}`)
+      .remove()
+      .then(() => {
+        Actions.eventList({ type: 'reset' });
+      });
+  };
+}
