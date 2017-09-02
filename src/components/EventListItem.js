@@ -26,7 +26,7 @@ class EventListItem extends React.Component {
       {latitude: 40.7205238, longitude: -74.0431689}
     );
     const convertedDistance = geolib.convertUnit('mi', distance, 2)
-    return convertedDistance;
+    return convertedDistance
   }
 
   render() {
