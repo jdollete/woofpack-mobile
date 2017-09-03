@@ -7,6 +7,7 @@ import UserLogin from './components/UserLogin';
 import EventList from './components/EventList';
 import EventCreate from './components/EventCreate';
 import EventView from './components/EventView';
+import EventEdit from './components/EventEdit';
 
 const RouterComponent = () => {
   return (
@@ -37,6 +38,11 @@ const RouterComponent = () => {
           hideNavBar="true"
           key="eventCreate"
           component={EventCreate}
+        />
+        <Scene
+          hideNavBar="true"
+          key="eventEdit"
+          component={EventEdit}
         />
         <Scene
           hideNavBar="true"
