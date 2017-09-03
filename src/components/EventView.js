@@ -22,8 +22,7 @@ class EventView extends React.Component {
   }
 
   onPressEditEvent() {
-
-    alert("Event Edit");
+    Actions.eventEdit({ event: this.props.event });
   }
 
   onPressDeleteEvent() {
