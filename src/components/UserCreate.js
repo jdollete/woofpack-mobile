@@ -43,14 +43,14 @@ class UserCreate extends React.Component {
   }
 
   renderButton() {
-    const { buttonStyle, textStyle } = styles;
+    const { buttonStyle, textStyle, buttonStyleView } = styles;
 
     if (this.props.loading) {
       return <Spinner size="large" />;
     }
 
     return (
-      <Container>
+      <View style ={buttonStyleView}>
         <Button
           block
           success
@@ -67,15 +67,22 @@ class UserCreate extends React.Component {
         >
           <Text style={textStyle}>Cancel</Text>
         </Button>
-      </Container>
+      </View>
     );
   }
 
   render() {
-    const { errorTextStyle, viewStyle } = styles;
+    const { errorTextStyle, viewStyle, imageStyleView, imageStyle, inputStyleView } = styles;
     return (
           <View style={viewStyle}>
-            <View>
+            <View style={imageStyleView}>
+              <Image
+              style={imageStyle}
+              resizeMode="contain"
+              source={require('../images/WoofPack_sign_in_login.png')}
+              />
+            </View>
+            <View style={inputStyleView}>
               <View>
                 <Text style={errorTextStyle}>
                 {this.props.error}
@@ -83,15 +90,17 @@ class UserCreate extends React.Component {
               </View>
               <BaseInput
                 autoCorrect={false}
-                iconName="ios-mail"
-                placeHolder='pawsome@woofpack.com'
+                labelName="Email:"
+                // iconName="ios-mail"
+                // placeHolder='pawsome@woofpack.com'
                 onChangeText={this.onEmailChange}
                 value={this.props.email}
               />
               <BaseInput
                 secureTextEntry={true}
-                iconName="ios-key"
-                placeHolder='paaawsword'
+                // iconName="ios-key"
+                labelName="Password:"
+                // placeHolder='paaawsword'
                 onChangeText={this.onPasswordChange}
                 value={this.props.password}
               />
@@ -105,15 +114,23 @@ class UserCreate extends React.Component {
 
 const styles = StyleSheet.create({
   viewStyle: {
-    flex:1,
+    flex:0.60,
     justifyContent: 'center',
+  },
+  imageStyleView: {
+    flex: 2
+  },
+  buttonStyleView: {
+    flex: 2,
+    marginTop: 50
   },
   buttonStyle: {
     borderColor: '#F49F0A',
     backgroundColor: '#F49F0A',
-    marginLeft: 30,
-    marginRight:30,
-    marginTop: 5,
+    height: 60,
+    borderRadius: 30,
+    marginLeft: 40,
+    marginRight:40,
     marginBottom: 5
   },
   errorTextStyle: {
@@ -124,6 +141,21 @@ const styles = StyleSheet.create({
   textStyle: {
     color: 'white',
     fontWeight: "600"
+  },
+  inputStyleView: {
+    flex: 1,
+    marginRight: 20,
+    marginLeft: 20,
+  },
+  imageStyle: {
+    flex: 1,
+    alignSelf: 'stretch',
+    width: null,
+    height: null,
+    marginTop:50,
+    marginLeft: 110,
+    marginRight: 110,
+    marginBottom: 0,
   }
 });
 

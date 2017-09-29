@@ -32,7 +32,7 @@ class IntroPage extends React.Component {
           <Image
           style={imageStyle}
           resizeMode="contain"
-          source={require('../images/WoofPackHome2.png')}
+          source={require('../images/WoofPackHome.png')}
           />
         </View>
         <View style={viewButtonStyle}>
