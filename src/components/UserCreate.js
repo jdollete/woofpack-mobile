@@ -79,42 +79,42 @@ class UserCreate extends React.Component {
   render() {
     const { errorTextStyle, viewStyle, imageStyleView, imageStyle, inputStyleView } = styles;
     return (
-          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <View style={viewStyle}>
-              <View style={imageStyleView}>
-                <Image
-                style={imageStyle}
-                resizeMode="contain"
-                source={require('../images/WoofPack_sign_in_login.png')}
-                />
-              </View>
-              <View style={inputStyleView}>
-                <View>
-                  <Text style={errorTextStyle}>
-                  {this.props.error}
-                  </Text>
-                </View>
-                <BaseInput
-                  autoCorrect={false}
-                  labelName="EMAIL:"
-                  keyboardType="email-address"
-                  // iconName="ios-mail"
-                  // placeHolder='pawsome@woofpack.com'
-                  onChangeText={this.onEmailChange}
-                  value={this.props.email}
-                />
-                <BaseInput
-                  secureTextEntry={true}
-                  // iconName="ios-key"
-                  labelName="PASSWORD:"
-                  // placeHolder='paaawsword'
-                  onChangeText={this.onPasswordChange}
-                  value={this.props.password}
-                />
-                {this.renderButton()}
-              </View>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={viewStyle}>
+          <View style={imageStyleView}>
+            <Image
+            style={imageStyle}
+            resizeMode="contain"
+            source={require('../images/WoofPack_sign_in_login.png')}
+            />
+          </View>
+          <View style={inputStyleView}>
+            <View>
+              <Text style={errorTextStyle}>
+              {this.props.error}
+              </Text>
             </View>
-          </TouchableWithoutFeedback>
+            <BaseInput
+              autoCorrect={false}
+              labelName="EMAIL:"
+              keyboardType="email-address"
+              // iconName="ios-mail"
+              // placeHolder='pawsome@woofpack.com'
+              onChangeText={this.onEmailChange}
+              value={this.props.email}
+            />
+            <BaseInput
+              secureTextEntry={true}
+              // iconName="ios-key"
+              labelName="PASSWORD:"
+              // placeHolder='paaawsword'
+              onChangeText={this.onPasswordChange}
+              value={this.props.password}
+            />
+            {this.renderButton()}
+          </View>
+        </View>
+      </TouchableWithoutFeedback>
 
     );
   }
