@@ -91,6 +91,7 @@ class UserCreate extends React.Component {
               <BaseInput
                 autoCorrect={false}
                 labelName="EMAIL:"
+                keyboardType="email-address"
                 // iconName="ios-mail"
                 // placeHolder='pawsome@woofpack.com'
                 onChangeText={this.onEmailChange}

@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text } from 'react-native';
 import { Icon, InputGroup, Input, Form, Item, Label } from 'native-base';
 
-const BaseInput = ({ iconName, placeHolder, secureTextEntry, value, onChangeText, labelName }) => {
+const BaseInput = ({ iconName, placeHolder, secureTextEntry, value, onChangeText, labelName, keyboardType }) => {
   const { inputGroupStyle, labelStyle } = styles;
 
   return (
@@ -11,6 +11,7 @@ const BaseInput = ({ iconName, placeHolder, secureTextEntry, value, onChangeText
         <Label><Text style={labelStyle}>{labelName}</Text></Label>
         <Input
           secureTextEntry={secureTextEntry}
+          keyboardType={keyboardType}
           autoCorrect={false}
           // placeholder={placeHolder}
           value={value}
