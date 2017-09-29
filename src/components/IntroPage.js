@@ -25,27 +25,31 @@ class IntroPage extends React.Component {
   }
 
   render() {
-    const { viewStyle, viewButtonStyle, buttonStyle, textStyle, imageStyle } = styles;
+    const { imageStyleView, buttonStyleView, viewStyle, viewButtonStyle, buttonStyle, textStyleSignUp, textStyleLogin, imageStyle, loginButton, signUpButton } = styles;
     return (
       <View style={viewStyle}>
-        <Image
-          source={require('../images/woofpacksplash.png')}
+        <View style={imageStyleView}>
+          <Image
           style={imageStyle}
-        />
+          resizeMode="contain"
+          source={require('../images/WoofPackHome2.png')}
+          />
+        </View>
         <View style={viewButtonStyle}>
           <Button
-            bordered
-            style={buttonStyle}
-            onPress={this.onLoginPress}
+          bordered
+          style={[buttonStyle, signUpButton]}
+          onPress={this.onSignUpPress}
           >
-            <Text style={textStyle}>Login</Text>
+          <Text style={textStyleSignUp}>CREATE ACCOUNT</Text>
           </Button>
           <Button
+            block
             bordered
-            style={buttonStyle}
-            onPress={this.onSignUpPress}
+            style={[buttonStyle, loginButton]}
+            onPress={this.onLoginPress}
           >
-            <Text style={textStyle}>Sign-Up</Text>
+            <Text style={textStyleLogin}>SIGN IN</Text>
           </Button>
         </View>
 
@@ -58,31 +62,57 @@ const styles = StyleSheet.create({
   viewStyle: {
     flex:1,
     justifyContent: 'flex-end',
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+  },
+  buttonStyleView: {
+  },
+  imageStyleView: {
+    flex: 1.75,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   viewButtonStyle: {
-    flexDirection: 'row',
-    paddingLeft: 5,
-    paddingRight: 5,
-    paddingBottom: 20
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   buttonStyle: {
+    alignSelf: 'center',
+    justifyContent: 'center',
+    height: 60,
+    width: 300,
+    marginLeft:60,
+    marginRight: 60,
+    marginTop: 10,
+    marginBottom: 10,
+    borderRadius: 30
+  },
+  textStyleLogin: {
+    color: '#FFFFFF',
+    fontWeight: "600"
+  },
+  textStyleSignUp: {
+    color: '#F49F0A',
+    fontWeight: "600"
+  },
+  loginButton: {
     borderColor: '#F49F0A',
     backgroundColor: '#F49F0A',
-    flex: 1,
-    justifyContent: 'center',
-    marginLeft: 5,
-    marginRight: 5
   },
-  textStyle: {
-    color: 'white',
-    fontWeight: "600"
+  signUpButton: {
+    borderColor: '#F49F0A',
+    backgroundColor: '#FFFFFF',
   },
   imageStyle: {
     flex: 1,
+    alignSelf: 'stretch',
     width: null,
     height: null,
-    borderColor: 'white'
+    marginTop: 60,
+    marginLeft: 60,
+    marginRight: 60,
+    marginBottom: 0,
   }
 });
 
