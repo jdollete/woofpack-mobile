@@ -90,7 +90,7 @@ class UserCreate extends React.Component {
               </View>
               <BaseInput
                 autoCorrect={false}
-                labelName="Email:"
+                labelName="EMAIL:"
                 // iconName="ios-mail"
                 // placeHolder='pawsome@woofpack.com'
                 onChangeText={this.onEmailChange}
@@ -99,7 +99,7 @@ class UserCreate extends React.Component {
               <BaseInput
                 secureTextEntry={true}
                 // iconName="ios-key"
-                labelName="Password:"
+                labelName="PASSWORD:"
                 // placeHolder='paaawsword'
                 onChangeText={this.onPasswordChange}
                 value={this.props.password}
@@ -122,15 +122,16 @@ const styles = StyleSheet.create({
   },
   buttonStyleView: {
     flex: 2,
-    marginTop: 50
+    marginTop: 20
   },
   buttonStyle: {
     borderColor: '#F49F0A',
     backgroundColor: '#F49F0A',
     height: 60,
     borderRadius: 30,
-    marginLeft: 40,
-    marginRight:40,
+    marginTop: 20,
+    marginLeft: 20,
+    marginRight: 20,
     marginBottom: 5
   },
   errorTextStyle: {
