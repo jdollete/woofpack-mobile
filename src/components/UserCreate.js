@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { StyleSheet, View, Image } from 'react-native';
+import { StyleSheet, View, Image, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import {
   Container,
   Content,
@@ -43,10 +43,14 @@ class UserCreate extends React.Component {
   }
 
   renderButton() {
-    const { buttonStyle, textStyle, buttonStyleView } = styles;
+    const { buttonStyle, textStyle, buttonStyleView, spinnerView } = styles;
 
     if (this.props.loading) {
-      return <Spinner size="large" />;
+      return (
+        <View style={spinnerView}>
+          <Spinner style={spinnerView} size="large" />
+        </View>
+      )
     }
 
     return (
@@ -68,45 +72,49 @@ class UserCreate extends React.Component {
           <Text style={textStyle}>Cancel</Text>
         </Button>
       </View>
+
     );
   }
 
   render() {
     const { errorTextStyle, viewStyle, imageStyleView, imageStyle, inputStyleView } = styles;
     return (
-          <View style={viewStyle}>
-            <View style={imageStyleView}>
-              <Image
-              style={imageStyle}
-              resizeMode="contain"
-              source={require('../images/WoofPack_sign_in_login.png')}
-              />
-            </View>
-            <View style={inputStyleView}>
-              <View>
-                <Text style={errorTextStyle}>
-                {this.props.error}
-                </Text>
+          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <View style={viewStyle}>
+              <View style={imageStyleView}>
+                <Image
+                style={imageStyle}
+                resizeMode="contain"
+                source={require('../images/WoofPack_sign_in_login.png')}
+                />
               </View>
-              <BaseInput
-                autoCorrect={false}
-                labelName="EMAIL:"
-                // iconName="ios-mail"
-                // placeHolder='pawsome@woofpack.com'
-                onChangeText={this.onEmailChange}
-                value={this.props.email}
-              />
-              <BaseInput
-                secureTextEntry={true}
-                // iconName="ios-key"
-                labelName="PASSWORD:"
-                // placeHolder='paaawsword'
-                onChangeText={this.onPasswordChange}
-                value={this.props.password}
-              />
-              {this.renderButton()}
+              <View style={inputStyleView}>
+                <View>
+                  <Text style={errorTextStyle}>
+                  {this.props.error}
+                  </Text>
+                </View>
+                <BaseInput
+                  autoCorrect={false}
+                  labelName="EMAIL:"
+                  keyboardType="email-address"
+                  // iconName="ios-mail"
+                  // placeHolder='pawsome@woofpack.com'
+                  onChangeText={this.onEmailChange}
+                  value={this.props.email}
+                />
+                <BaseInput
+                  secureTextEntry={true}
+                  // iconName="ios-key"
+                  labelName="PASSWORD:"
+                  // placeHolder='paaawsword'
+                  onChangeText={this.onPasswordChange}
+                  value={this.props.password}
+                />
+                {this.renderButton()}
+              </View>
             </View>
-          </View>
+          </TouchableWithoutFeedback>
 
     );
   }
@@ -121,6 +129,10 @@ const styles = StyleSheet.create({
     flex: 2
   },
   buttonStyleView: {
+    flex: 2,
+    marginTop: 20
+  },
+  spinnerView: {
     flex: 2,
     marginTop: 20
   },
