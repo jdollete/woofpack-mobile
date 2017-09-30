@@ -53,7 +53,7 @@ class EventCreate extends React.Component {
   render() {
     return (
       <Container>
-      <EventForm />
+        <EventForm />
         <Footer>
           <FooterTab>
             <Button full onPress={this.onCreatePress}>
