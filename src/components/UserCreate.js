@@ -43,7 +43,12 @@ class UserCreate extends React.Component {
   }
 
   renderButton() {
-    const { buttonStyle, textStyle, buttonStyleView, spinnerView } = styles;
+    const {
+      buttonStyle,
+      textStyle,
+      buttonStyleView,
+      spinnerView
+    } = styles;
 
     if (this.props.loading) {
       return (

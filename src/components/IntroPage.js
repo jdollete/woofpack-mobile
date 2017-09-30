@@ -25,7 +25,18 @@ class IntroPage extends React.Component {
   }
 
   render() {
-    const { imageStyleView, buttonStyleView, viewStyle, viewButtonStyle, buttonStyle, textStyleSignUp, textStyleLogin, imageStyle, loginButton, signUpButton } = styles;
+    const {
+      imageStyleView,
+      buttonStyleView,
+      viewStyle,
+      viewButtonStyle,
+      buttonStyle,
+      textStyleSignUp,
+      textStyleLogin,
+      imageStyle,
+      loginButton,
+      signUpButton
+    } = styles;
     return (
       <View style={viewStyle}>
         <View style={imageStyleView}>
