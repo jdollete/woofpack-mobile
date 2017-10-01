@@ -10,9 +10,14 @@ import EventView from './components/EventView';
 import EventEdit from './components/EventEdit';
 
 const RouterComponent = () => {
+  const sceneConfig = {
+      cardStyle: {
+            backgroundColor: 'white'
+      }
+  }
   return (
     <Router>
-      <Scene key="root">
+      <Scene key="root" {...sceneConfig}>
         <Scene
           hideNavBar="true"
           key="intro"
