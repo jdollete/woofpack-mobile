@@ -1,6 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { StyleSheet, View, Image, Keyboard, TouchableWithoutFeedback } from 'react-native';
+import firebase from 'firebase';
+import {
+  StyleSheet,
+  View,
+  Image,
+  Keyboard,
+  TouchableWithoutFeedback,
+  AlertIOS,
+  Alert
+} from 'react-native';
 import {
   Container,
   Button,
@@ -18,6 +27,7 @@ class UserLogin extends React.Component {
     this.onPasswordChange = this.onPasswordChange.bind(this);
     this.onLoginPress = this.onLoginPress.bind(this);
     this.onCancelPress = this.onCancelPress.bind(this);
+    this.onForgetPress = this.onForgetPress.bind(this);
   }
 
   onEmailChange(text) {
@@ -36,6 +46,29 @@ class UserLogin extends React.Component {
   onCancelPress() {
     this.props.clearError();
     Actions.intro({type: "reset"});
+  }
+
+  onForgetPress() {
+    AlertIOS.prompt(
+      'Password Reset',
+      'Please enter you password',
+      text => {
+        var auth = firebase.auth();
+        var emailAddress = text;
+
+        auth.sendPasswordResetEmail(emailAddress).then(function() {
+          AlertIOS.alert(
+           'Password Reset Sent',
+           'Please check your email'
+          );
+        }).catch(function(error) {
+          AlertIOS.alert(
+           'Something Went Wrong',
+           error.message
+          );
+        });
+      }
+    );
   }
 
   renderButton() {
@@ -78,7 +111,14 @@ class UserLogin extends React.Component {
   }
 
   render() {
-    const { viewStyle, errorTextStyle, imageStyleView, imageStyle, inputStyleView } = styles;
+    const {
+      viewStyle,
+      errorTextStyle,
+      imageStyleView,
+      imageStyle,
+      inputStyleView ,
+      forgotPasswordStyle
+    } = styles;
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={viewStyle}>
@@ -112,6 +152,7 @@ class UserLogin extends React.Component {
               onChangeText={this.onPasswordChange}
               value={this.props.password}
             />
+            <Text style={forgotPasswordStyle} onPress={this.onForgetPress}>Forgot Password?</Text>
             {this.renderButton()}
           </View>
         </View>
@@ -130,7 +171,7 @@ const styles = StyleSheet.create({
   },
   buttonStyleView: {
     flex: 2,
-    marginTop: 20
+    marginTop: 5
   },
   spinnerView: {
     flex: 2,
@@ -159,6 +200,13 @@ const styles = StyleSheet.create({
   textStyle: {
     color: 'white',
     fontWeight: "600"
+  },
+  forgotPasswordStyle: {
+    paddingTop: 10,
+    fontSize: 12,
+    color: "#F49F0A",
+    textAlign: 'right',
+    marginRight: 10
   },
   imageStyle: {
     flex: 1,
