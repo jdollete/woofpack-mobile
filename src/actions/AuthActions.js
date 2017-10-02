@@ -60,18 +60,29 @@ const createUserFail = (dispatch, error) => {
 };
 
 const createUserSuccess = (dispatch, user) => {
+  var user = firebase.auth().currentUser;
+  user.sendEmailVerification();
+
   dispatch({
     type: CREATE_USER_SUCCESS,
     payload: user
   });
-  
+
   Actions.eventList({ type: 'reset' });
 
 };
 
 const loginUserFail = (dispatch) => {
   dispatch({ type: LOGIN_USER_FAIL });
-}
+};
+
+const sendUserVerification = (dispatch, user) => {
+
+  dispatch({
+    // user.sendEmailVerification().then(function() {
+    // }).catch((error) => createUserFail(dispatch, error));
+  });
+};
 
 const loginUserSuccess = (dispatch, user) => {
   dispatch({
